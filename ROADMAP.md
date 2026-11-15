@@ -68,7 +68,7 @@ Feature parity with Caduceus for the E-P7: [docs/PARITY.md](docs/PARITY.md).
 |---|---|---|
 | **Colour profiles in video** ([#3](https://github.com/androidfanman/caduceus-om3/issues/3)) | Your films also apply when recording video. | Requested |
 | **10-bit beyond Log and HLG** ([#1](https://github.com/androidfanman/caduceus-om3/issues/1), [#3](https://github.com/androidfanman/caduceus-om3/issues/3)) | 10-bit with the standard and COLOR profiles, or cleaner 8-bit. | Requested |
-| **H.265 and a bitrate setting** ([#51](https://github.com/androidfanman/caduceus-om3/pull/51), by buburun) | H.265 for every picture mode, plus a bitrate choice. | Requested |
+| **H.265 and a bitrate setting** ([#51](https://github.com/androidfanman/caduceus-om3/pull/51), by buburun) | H.265 for every picture mode (10-bit), plus a Bitrate row (Stock / High / Medium / Low). Camera-tested by buburun. | In a pull request |
 | **Sharpness in video** ([#6](https://github.com/androidfanman/caduceus-om3/issues/6)) | Sharpness down to Off in video. | Requested |
 | **Wider C-AF settings for video** ([#14](https://github.com/androidfanman/caduceus-om3/issues/14)) | C-AF speed and sensitivity beyond −2..+2. | Requested |
 | **Open gate video** ([#24](https://github.com/androidfanman/caduceus-om3/issues/24)) | Record from the whole sensor height. | Requested |
