@@ -127,6 +127,11 @@ The gate and the digest have unit tests that need no firmware:
 | `grain-dial-steps-as-contrast` | The same for the Film Grain row, after Contrast: rear +1 up, front +1 down, and the debug log names the strength it ends on (experiment/perf-040, 2026-11-18) |
 | `look-tables-match-the-model` | `st_run`'s R, G and B tables on a fake COLOR job match the Python models for split toning, curves and both together, and `sd_crc` matches zlib's CRC-32 |
 | `live-view-gates-wait-for-section-6` | The three live-view hook sites (hook_mx, hook_tone, hook_lv), called directly with the camera's ready word at 0x1f, reach the stock code (lv_skip with d0 = 11), and at 0x3f our code (fix/section-gates, 2026-11-17) |
+| `video-bitrate-stock-by-default` | A fresh camera's Bitrate is Stock: 100 Mbps stays 100 Mbps (the CADLOG.TXT `Video:` line) |
+| `video-bitrate-high` | Bitrate High through the video menu: 100 Mbps records as 150 Mbps, codec and picture mode untouched |
+| `video-bitrate-medium` | Bitrate Medium through the video menu: 100 Mbps records as 66.7 Mbps |
+| `video-bitrate-low` | Bitrate Low through the video menu: 100 Mbps records as 33.3 Mbps |
+| `video-h265-keeps-picture-mode` | Video Codec H.265 through the video menu leaves the picture-mode range (1361) at 0; stock sets 254 (OM-Log / HLG) |
 | `patch-audit` | om-emu's audit finds no patched byte the camera does not load, and no task started at power-on |
 | `static:release-rebuild` | `firmware/patch.py` rebuilds the newest release byte for byte, and `SHA256SUMS` matches |
 | `static:hook-list` | The build's hooks equal `tools/test/hooks.json` |
@@ -454,6 +459,9 @@ calling convention accounts for three. Settings kept per mode and across boots i
 - **Node version.** The om-emu README asks for Node 26 or newer. The runs above used Node 24.22.1 without a problem.
 - **om-emu version.** `research/setup.sh` clones om-emu at its newest commit (`--depth 1`). A suite needs a pinned
   commit, so an upstream change cannot alter results. The checkout used above is `7063b53` (2026-11-13).
+  om-emu's newer head (0819080, 2026-11-14, after a history rewrite upstream) fails `video-boot-after-photo-boot` on
+  main v0.29.5 too: the photo/video switch reads as photo in the video boot (photo check 194, not 193). `7063b53`
+  is still fetchable from the rewritten repository (`git fetch --unshallow`, then `git checkout 7063b53`).
 - **om-emu license.** The repository has no license file. Ask upstream before vendoring or redistributing it.
 - **Continuous integration.** The tests need the stock firmware, which cannot be in the repo or in a public CI
   runner. The suite runs locally, or on a self-hosted runner that holds each person's own copy.
