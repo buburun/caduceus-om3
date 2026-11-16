@@ -380,11 +380,12 @@ def FV_LINE(k, name):                            # line k: our label, then the n
 
 def fv_not_run(hits):
     return [f'fv_add ran {len(hits)} times with no menu opened'] if hits else []
-# Video menu (PR #51, H.265 with the standard picture modes and the Bitrate row). On a fresh camera the menu opens on
-# the wrench tab's first page; 14 lefts reach the video tab's page 1, whose rows run Custom Mode, Separate Settings,
+# Video menu (PR #51, H.265 with the standard picture modes and the Bitrate row). On a fresh camera in video (om-emu
+# 0819080) the menu opens on the first camera tab's first page; 21 lefts (My Menu, the wrench tab's 6 pages, then the
+# gear, playback and video tabs' pages) reach the video tab's page 1, whose rows run Custom Mode, Separate Settings,
 # Video Codec, Bitrate. The Bitrate dropdown lists High / Stock / Medium / Low with the cursor on the stored value
 # (Stock); the Video Codec picker is H.264 | H.265 (right). Each pick ends with OK, then MENU closes the menu.
-VIDEO_PAGE1 = 'menu wait' + ' left wait' * 14
+VIDEO_PAGE1 = 'menu wait' + ' left wait' * 21
 def video_pick(row_downs, moves):
     return (f'wait wait wait s1 wait wait {VIDEO_PAGE1}' + ' down wait' * row_downs + f' ok wait {moves} ok wait '
             'menu wait wait s1 wait wait poweroff')
