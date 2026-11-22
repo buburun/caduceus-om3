@@ -485,7 +485,7 @@ def build(defaults, testfile, out):
     # Tele-converter (2137) moves to the end of page 222 ("Picture Mode/WB"), so page 221 stays one screen.
     # Per page: the record {n, labels, helps, n2, value lists, n3, value lists} (label / help {u32 sid, u16 type,
     # u16 id, u32 text}, value list {u16 sid, u16 n, u32 list}), the definition's dropdown rows {14, sid, 0, 1}
-    # and the row order (cursor kind 225 / 226, sub 0). Copies in ext12 (vbm_*, vbm2_*) where a list grows.
+    # and the row order (cursor kind 225 / 226, sub 0). Copies in ext13 (vbm_*, vbm2_*) where a list grows.
     VSID, DTC = 1288, 2137
     def rec(a):
         return struct.unpack_from('<7I', m, o(a))

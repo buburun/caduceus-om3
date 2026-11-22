@@ -2549,6 +2549,27 @@ lv_g:                             /* G3: jmp from s_lv (the live view / movie re
 1:
  mov 11,d0                        /* the stock path: picture mode 11 (< 100) -> 0x6046b94f with d0 = 11 */
  jmp lv_skip
+vb_ag:                            /* G6: jmp from .hook_vba (section 2, the record-rate sum); vb_a is in section 6 */
+ mov (SEC_READY),d0               /* d0 is free there (vb_a's note); beq leaves d0 = 0, the function's status */
+ and 0x20,d0
+ beq 1f
+ jmp vb_a
+1:
+ mov 100,d1                       /* the stock 0x6053c32d..: the camera's own rate until section 6 is in */
+ clr d2
+ mov d2,mdr
+ divu d1,d3
+ jmp vb_ra
+vb_bg:                            /* G7: jmp from .hook_vbb (section 2, the encoder's rate pair); vb_b in section 6 */
+ mov (SEC_READY),d0               /* d0 is free there (vb_b's note) */
+ and 0x20,d0
+ beq 1f
+ jmp vb_b
+1:
+ mov (a3),d0                      /* the stock 0x6053e6d8.. */
+ mov d0,(4,a3)
+ mov (12,sp),a0
+ jmp vb_rb
 
 .section .ext5,"ax"
 s_wt:                            /* leaf: MDR = return, a0 = combiner context; keep a0 for the stock getter */
@@ -23411,12 +23432,12 @@ bl_v:                             /* the value */
 .set VB_MED, 88
 .set VB_LOW, 3200
 .section .hook_vba,"ax"
- jmp vb_a                         /* stock 0x6053c32d: mov 100,d1; clr d2; mov d2,mdr; divu d1,d3 */
+ jmp vb_ag                        /* G6 -> vb_a; stock 0x6053c32d: mov 100,d1; clr d2; mov d2,mdr; divu d1,d3 */
  .byte 0xcb,0xcb
 .section .hook_vbb,"ax"
- jmp vb_b                         /* stock 0x6053e6d8: mov (a3),d0; mov d0,(4,a3); mov (12,sp),a0 */
+ jmp vb_bg                        /* G7 -> vb_b; stock 0x6053e6d8: mov (a3),d0; mov d0,(4,a3); mov (12,sp),a0 */
  .byte 0xcb
-.section .ext12,"ax"
+.section .ext13,"ax"                 /* v0.40.2: ext12 is full; video code moved to ext13 */
 /* vb_scale: `call vb_scale,[d2,d3,a2,a3],24`, d0 = bps -> d0 scaled by the choice in VB_SID. Uses d1, a0, a1, mdr. */
 vb_scale:
  mov d0,d2
@@ -23534,7 +23555,7 @@ vbs_low:
  * UTF-16 buffers instead. */
 .section .hook_vbs,"ax"
  jmp vb_s                         /* stock 0x611d01c7: mov (12,sp),a0; ret [d2,d3,a2,a3],68 */
-.section .ext12,"ax"
+.section .ext13,"ax"
 vb_s:
  mov (12,sp),a0
  cmp 0,a0
