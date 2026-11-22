@@ -9901,3 +9901,17 @@ Branch `feature/video-h265-bitrate` (on main v0.29.4). Tools: `research/video/dr
   49 / 49 Mbps (target 50). Every clip has exactly duration x 59.94 frames (no dropped frames at ~220 Mbps). Films
   in video: a Velvia-type and a Portra-type film each recorded at Low and High, the two looks visibly different (owner's
   labels; the files carry no picture-mode tag). Colour tag still BT.2020 (open, as before).
+
+## Video (PR #51) on v0.40.2 (2026-11-22; emulator only; branch feature/v0.40.2-h265)
+- buburun/feature/video-h265-bitrate (5 commits on main 65040ed) cherry-picked onto the v0.40.2 tag. Conflicts only
+  where both sides appended (editor.s end, NOTES, ROADMAP, TESTING, emu_test.py, hooks.json); the last commit's
+  21-lefts menu path replayed by hand.
+- ext12 is full on v0.40.2 (261,984 of 262,144 B; the video code made it 263,224): the video code and the menu copies
+  (`vbm_*`, `vbm2_*`) are in ext13 now (78,016 of 81,920 B with probe w1; the loader end word follows ext13).
+- `static:section-order` (new since the PR, fix/section-gates) failed hook_vba and hook_vbb: section 2 sites that run
+  at start-up (the remaining-time estimate, noted in the PR) and jumped straight into section 6. Gates G6 `vb_ag` /
+  G7 `vb_bg` in ext1 (1588 of 1744 B), the mx_g pattern: until section 6 is ready the stock instructions run (vb_ag's
+  beq leaves d0 = 0, the function's status, as vb_a's `clr d0`). The 1288 value-list word 0x6061a698 -> vbm_keys is
+  in LATE_RELEASED as the dm_list words (data the store reads; first read after start-up). hooks.json: the same three
+  hooks and 17 patch sites as the PR's own list.
+- Suite: 124 of 124 (out-h265), the five video tests and `static:release-rebuild` (v0.40.2 byte for byte) included.
