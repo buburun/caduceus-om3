@@ -23437,7 +23437,7 @@ bl_v:                             /* the value */
 .section .hook_vbb,"ax"
  jmp vb_bg                        /* G7 -> vb_b; stock 0x6053e6d8: mov (a3),d0; mov d0,(4,a3); mov (12,sp),a0 */
  .byte 0xcb
-.section .ext13,"ax"                 /* v0.40.2: ext12 is full; video code moved to ext13 */
+.section .ext15,"ax"                 /* v0.40.3: ext13 is full; video code in ext15 (section 6, as ext12 / ext13 before) */
 /* vb_scale: `call vb_scale,[d2,d3,a2,a3],24`, d0 = bps -> d0 scaled by the choice in VB_SID. Uses d1, a0, a1, mdr. */
 vb_scale:
  mov d0,d2
@@ -23555,7 +23555,7 @@ vbs_low:
  * UTF-16 buffers instead. */
 .section .hook_vbs,"ax"
  jmp vb_s                         /* stock 0x611d01c7: mov (12,sp),a0; ret [d2,d3,a2,a3],68 */
-.section .ext13,"ax"
+.section .ext15,"ax"
 vb_s:
  mov (12,sp),a0
  cmp 0,a0

@@ -1,4 +1,4 @@
-> **Branch `feature/v0.40.2-h265` (2026-11-22): PR #51 (H.265 with standard picture modes, Bitrate row) on v0.40.2.** Emulator suite 124 of 124; camera test pending (test build h1). Not released.
+> **Branch `feature/v0.40.3-h265` (2026-11-25): PR #51 (H.265 with standard picture modes, Bitrate row) on v0.40.3.** Emulator only so far; camera test pending (test build h4). Not released.
 
 <h1 align="center">Caduceus for OM-3</h1>
 
