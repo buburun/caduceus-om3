@@ -74,7 +74,7 @@ working as it does now, and a change of ours that breaks video is still a bug an
 |---|---|---|
 | **Colour profiles in video** ([#3](https://github.com/androidfanman/caduceus-om3/issues/3)) | Your films also apply when recording video. | Not planned |
 | **10-bit beyond Log and HLG** ([#1](https://github.com/androidfanman/caduceus-om3/issues/1), [#3](https://github.com/androidfanman/caduceus-om3/issues/3)) | 10-bit with the standard and COLOR profiles, or cleaner 8-bit. | Not planned |
-| **H.265 and a bitrate setting** ([#51](https://github.com/androidfanman/caduceus-om3/pull/51), by buburun) | H.265 for every picture mode, plus a bitrate choice. | Not planned |
+| **H.265 and a bitrate setting** ([#51](https://github.com/androidfanman/caduceus-om3/pull/51), by buburun) | H.265 for every picture mode (10-bit), plus a Bitrate row (Stock / High / Medium / Low). | Not planned upstream; **in this fork's main** (buburun) |
 | **Sharpness in video** ([#6](https://github.com/androidfanman/caduceus-om3/issues/6)) | Sharpness down to Off in video. | Not planned |
 | **Wider C-AF settings for video** ([#14](https://github.com/androidfanman/caduceus-om3/issues/14)) | C-AF speed and sensitivity beyond −2..+2. | Not planned |
 | **Open gate video** ([#24](https://github.com/androidfanman/caduceus-om3/issues/24)) | Record from the whole sensor height. | Not planned |

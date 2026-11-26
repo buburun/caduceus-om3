@@ -131,6 +131,11 @@ The gate and the digest have unit tests that need no firmware:
 | `look-tables-match-the-model` | `st_run`'s R, G and B tables on a fake COLOR job match the Python models for split toning, curves and both together, and `sd_crc` matches zlib's CRC-32 |
 | `live-view-gates-wait-for-section-6` | The three live-view hook sites (hook_mx, hook_tone, hook_lv), called directly with the camera's ready word at 0x1f, reach the stock code (lv_skip with d0 = 11), and at 0x3f our code (fix/section-gates, 2026-11-17) |
 | `settle-ends-where-the-fixed-wait-ends` | The same keys with no `wait` between them, from a blank camera, run once with the driver's settle and once with its fixed wait (`SETTLE=0`): every step's state, the last screen's hash and the debug log are the same. The flow ends in `s1 poweroff`, so a settle that stops before the release's log write is caught (`SETTLE_K=0` fails it) |
+| `video-bitrate-stock-by-default` | A fresh camera's Bitrate is Stock: 100 Mbps stays 100 Mbps (the CADLOG.TXT `Video:` line) |
+| `video-bitrate-high` | Bitrate High through the video menu: 100 Mbps records as 150 Mbps, codec and picture mode untouched |
+| `video-bitrate-medium` | Bitrate Medium through the video menu: 100 Mbps records as 66.7 Mbps |
+| `video-bitrate-low` | Bitrate Low through the video menu: 100 Mbps records as 33.3 Mbps |
+| `video-h265-keeps-picture-mode` | Video Codec H.265 through the video menu leaves the picture-mode range (1361) at 0; stock sets 254 (OM-Log / HLG) |
 | `patch-audit` | om-emu's audit finds no patched byte the camera does not load, and no task started at power-on |
 | `static:release-rebuild` | `firmware/patch.py` rebuilds the newest release byte for byte, and `SHA256SUMS` matches |
 | `static:hook-list` | The build's hooks equal `tools/test/hooks.json` |

@@ -1,3 +1,5 @@
+> **buburun's fork of Caduceus for OM-3:** upstream (`androidfanman/caduceus-om3`) plus H.265 with the standard picture modes and a Bitrate row, and film sets with their own curves (MENU > Card/Folder/File > Film Set). Neither is part of the upstream project.
+
 <h1 align="center">Caduceus for OM-3</h1>
 
 <p align="center"><strong>Film looks and a color editor, built into the OM SYSTEM OM-3.</strong></p>
